@@ -1,5 +1,6 @@
 package br.dev.pedrosaraiva.desafio_gerenciador.de_veiculos.veiculo.model.entity;
 
+import br.dev.pedrosaraiva.desafio_gerenciador.de_veiculos.veiculo.model.dto.VeiculoDTO;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -14,7 +15,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
-@Table(name = "tb_veiculos")
+@Table(name = "tbVeiculos")
 @Getter @Setter @AllArgsConstructor @NoArgsConstructor
 public class Veiculo {
 
@@ -31,7 +32,14 @@ public class Veiculo {
     private String placa;
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    private TipoVeiculo tipo;
+    private String tipo;
 
+    public Veiculo (VeiculoDTO veiculo){
+        marca = veiculo.marca();
+        modelo = veiculo.modelo();
+        cor = veiculo.cor();
+        placa = veiculo.placa();
+        tipo = veiculo.tipo();
+    }
 
 }
